@@ -1,0 +1,21 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Flood Zone - New Delhi"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [[
+          [77.20, 28.60],
+          [77.25, 28.60],
+          [77.25, 28.65],
+          [77.20, 28.65],
+          [77.20, 28.60]
+        ]]
+      }
+    }
+  ]
+}

@@ -1,0 +1,27 @@
+// Initialize the map
+const map = L.map('map').setView([28.6, 77.2], 6); // Adjust the center and zoom as needed
+
+// Add OpenStreetMap base layer
+L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+  attribution: '© OpenStreetMap contributors'
+}).addTo(map);
+
+// Load GeoJSON from same folder (works on GitHub Pages)
+fetch('affected_areas.geojson')
+  .then(response => response.json())
+  .then(geojson => {
+    L.geoJSON(geojson, {
+      style: {
+        color: 'red',
+        weight: 2,
+        fillColor: 'red',
+        fillOpacity: 0.4
+      },
+      onEachFeature: (feature, layer) => {
+        if (feature.properties && feature.properties.name) {
+          layer.bindPopup(`<strong>Affected Area:</strong> ${feature.properties.name}`);
+        }
+      }
+    }).addTo(map);
+  })
+  .catch(error => console.error('Failed to load GeoJSON:', error));
